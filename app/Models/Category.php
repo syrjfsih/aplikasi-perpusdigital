@@ -21,4 +21,4 @@ class Category extends Model
     {
         return $this->belongsToMany(Books::class, 'book_category');
     }
-}1
+}
