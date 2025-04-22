@@ -37,8 +37,7 @@ Route::middleware('auth')->group(function () {
     // books route
     Route::resource('/books', BookController::class);
 
-    // categories route
-    Route::resource('/categories', CategoryController::class);
+   
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
