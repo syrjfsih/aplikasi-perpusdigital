@@ -44,8 +44,6 @@ export default function Index({ auth }) {
                                 <Table.Th>Author</Table.Th>
                                 <Table.Th>Published</Table.Th>
                                 <Table.Th>Year</Table.Th>
-                                <Table.Th>Category</Table.Th>
-                                <Table.Th>Action</Table.Th>
                             </tr>
                         </Table.Thead>
                         <Table.Tbody>
