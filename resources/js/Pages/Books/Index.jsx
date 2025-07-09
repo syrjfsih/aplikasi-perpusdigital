@@ -42,7 +42,7 @@ export default function Index({ auth }) {
                                 <Table.Th>No</Table.Th>
                                 <Table.Th>Title</Table.Th>
                                 <Table.Th>Author</Table.Th>
-                                <Table.Th>Published</Table.Th>
+                                <Table.Th>Publisher</Table.Th>
                                 <Table.Th>Year</Table.Th>
                             </tr>
                         </Table.Thead>
