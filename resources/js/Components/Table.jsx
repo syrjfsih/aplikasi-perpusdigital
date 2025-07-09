@@ -1,88 +1,84 @@
-import React from 'react'
+import React from 'react';
 
-const Card = ({ title, className, children }) => {
+const Card = ({ title, className = '', children }) => {
     return (
-        <>
-            <div className={`p-4 rounded-t-lg border ${className} bg-white`}>
-                <div className='flex items-center gap-2 font-semibold text-sm text-gray-700 uppercase'>
-                    {title}
+        <div className={`bg-white rounded-xl border border-[#e5e5e5] shadow-sm ${className}`}>
+            {title && (
+                <div className="px-6 py-4 border-b border-[#f0ece9] bg-[#fdfaf6] rounded-t-xl">
+                    <h2 className="text-[15px] font-semibold text-[#4b3832] tracking-wide uppercase font-serif">
+                        {title}
+                    </h2>
                 </div>
-            </div>
-            <div className='bg-white rounded-b-lg border-t-0'>
-                {children}
-            </div>
-        </>
-
-    )
-}
-
-const Table = ({ children }) => {
-    return (
-        <div className="w-full overflow-hidden overflow-x-auto border-collapse rounded-b-lg border border-t-0">
-            <table className="w-full text-sm">
-                {children}
-            </table>
+            )}
+            <div className="p-4">{children}</div>
         </div>
     );
 };
 
-const Thead = ({ className, children }) => {
+const Table = ({ children }) => {
     return (
-        <thead className={`${className} border-b bg-gray-50`}>{children}</thead>
+        <div className="w-full overflow-x-auto rounded-lg border border-[#e5e5e5]">
+            <table className="w-full text-sm text-[#3b2f2f]">{children}</table>
+        </div>
     );
 };
 
-const Tbody = ({ className, children }) => {
+const Thead = ({ className = '', children }) => {
     return (
-        <tbody className={`${className} divide-y bg-white`}>
+        <thead className={`bg-[#f7f4f0] border-b border-[#eaeaea] ${className}`}>
+            {children}
+        </thead>
+    );
+};
+
+const Tbody = ({ className = '', children }) => {
+    return (
+        <tbody className={`divide-y divide-[#eee] bg-white ${className}`}>
             {children}
         </tbody>
     );
 };
 
-const Td = ({ className, children}) => {
-    return (
-        <td
-            className={`${className} whitespace-nowrap p-4 align-middle text-gray-700`}
-        >
-            {children}
-        </td>
-    );
-};
-
-const Th = ({ className, children }) => {
+const Th = ({ className = '', children }) => {
     return (
         <th
             scope="col"
-            className={`${className} h-12 px-4 text-left align-middle font-medium text-gray-700`}
+            className={`px-6 py-3 text-left text-sm font-semibold text-[#5c4438] uppercase font-serif ${className}`}
         >
             {children}
         </th>
     );
 };
 
-const Empty = ({colSpan, message, children}) => {
+const Td = ({ className = '', children }) => {
+    return (
+        <td
+            className={`px-6 py-4 whitespace-nowrap text-sm text-[#3a2f2f] align-middle ${className}`}
+        >
+            {children}
+        </td>
+    );
+};
+
+const Empty = ({ colSpan = 1, message = 'Data tidak tersedia', children }) => {
     return (
         <tr>
-            <td colSpan={colSpan}>
-                <div className="flex items-center justify-center h-96">
-                    <div className="text-center">
-                        {children}
-                        <div className="mt-5">
-                            {message}
-                        </div>
-                    </div>
+            <td colSpan={colSpan} className="py-20 text-center text-sm text-gray-500">
+                <div className="flex flex-col items-center justify-center space-y-2">
+                    {children}
+                    <p>{message}</p>
                 </div>
             </td>
         </tr>
-    )
-}
+    );
+};
 
+// Attach components
 Table.Card = Card;
 Table.Thead = Thead;
 Table.Tbody = Tbody;
-Table.Td = Td;
 Table.Th = Th;
+Table.Td = Td;
 Table.Empty = Empty;
 
 export default Table;

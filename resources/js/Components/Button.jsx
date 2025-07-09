@@ -1,68 +1,104 @@
-import { Link, useForm } from '@inertiajs/react'
-import { IconArrowBack, IconCheck, IconPencilCog, IconPlus, IconTrash } from '@tabler/icons-react';
-import React from 'react'
+import { Link, useForm } from '@inertiajs/react';
+import {
+    IconArrowBack,
+    IconCheck,
+    IconPencilCog,
+    IconPlus,
+    IconTrash,
+} from '@tabler/icons-react';
 import Swal from 'sweetalert2';
-export default function Button({ type, url, className, children, ...props }) {
 
-    const { delete : destroy } = useForm();
+export default function Button({ type, url, className = '', children, ...props }) {
+    const { delete: destroy } = useForm();
 
-    const handleDeleteData = async (url) => {
+    const handleDeleteData = (url) => {
         Swal.fire({
-            title: 'Are you sure you want to delete this?',
-            text: 'Data is unrecoverable!',
+            title: 'Yakin ingin menghapus data ini?',
+            text: 'Data yang dihapus tidak dapat dikembalikan!',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#aaa',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal',
         }).then((result) => {
             if (result.isConfirmed) {
-                destroy(url)
-
+                destroy(url);
                 Swal.fire({
-                    title: 'Success!',
-                    text: 'Data deleted successfully!',
+                    title: 'Terhapus!',
+                    text: 'Data berhasil dihapus.',
                     icon: 'success',
+                    timer: 1500,
                     showConfirmButton: false,
-                    timer: 1500
-                })
+                });
             }
-        })
-    }
+        });
+    };
+
+    const baseStyle = 'inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg shadow-sm transition-all duration-150 focus:outline-none';
 
     return (
         <>
-            {type === 'add' &&
-                <Link href={url} className='px-4 py-2 text-sm border rounded-lg bg-white text-gray-700 flex items-center gap-2 hover:bg-gray-100'>
-                    <IconPlus size={18} strokeWidth={1.5}/> <span className='hidden lg:flex'>Create New Data</span>
+            {type === 'add' && (
+                <Link
+                    href={url}
+                    className={`${baseStyle} bg-emerald-100 text-emerald-700 hover:bg-emerald-200 ${className}`}
+                >
+                    <IconPlus size={18} strokeWidth={1.5} />
+                    <span className="hidden md:inline">Tambah Data</span>
                 </Link>
-            }
-            {type === 'modal' &&
-                <button {...props} type='button' className={`${className} px-4 py-2 text-sm border rounded-lg flex items-center gap-2`}>
+            )}
+
+            {type === 'modal' && (
+                <button
+                    {...props}
+                    type="button"
+                    className={`${baseStyle} bg-sky-100 text-sky-700 hover:bg-sky-200 ${className}`}
+                >
                     {children}
                 </button>
-            }
-            {type === 'submit' &&
-                <button type='submit' className='px-4 py-2 text-sm rounded-lg border border-teal-100 bg-teal-50 text-teal-500 flex items-center gap-2 hover:bg-teal-100'>
-                    <IconCheck size={16} strokeWidth={1.5}/> Save Data
+            )}
+
+            {type === 'submit' && (
+                <button
+                    type="submit"
+                    className={`${baseStyle} bg-teal-100 text-teal-700 border border-teal-200 hover:bg-teal-200 ${className}`}
+                >
+                    <IconCheck size={16} strokeWidth={1.5} />
+                    Simpan
                 </button>
-            }
-            {type === 'cancel' &&
-                <Link href={url} className='px-4 py-2 text-sm rounded-lg border border-rose-100 bg-rose-50 text-rose-500 flex items-center gap-2 hover:bg-rose-100'>
-                    <IconArrowBack size={16} strokeWidth={1.5}/> Go Back
+            )}
+
+            {type === 'cancel' && (
+                <Link
+                    href={url}
+                    className={`${baseStyle} bg-rose-100 text-rose-700 hover:bg-rose-200 ${className}`}
+                >
+                    <IconArrowBack size={16} strokeWidth={1.5} />
+                    Kembali
                 </Link>
-            }
-            {type === 'edit' &&
-                <Link href={url} className='px-4 py-2 rounded-lg bg-orange-50 text-orange-500 flex items-center gap-2 hover:bg-orange-100'>
-                    <IconPencilCog size={16} strokeWidth={1.5}/>
+            )}
+
+            {type === 'edit' && (
+                <Link
+                    href={url}
+                    className={`${baseStyle} bg-orange-100 text-orange-700 hover:bg-orange-200 ${className}`}
+                >
+                    <IconPencilCog size={16} strokeWidth={1.5} />
+                    <span className="hidden md:inline">Ubah</span>
                 </Link>
-            }
-            {type === 'delete' &&
-                <button onClick={() => handleDeleteData(url)} className='px-4 py-2 rounded-lg bg-rose-50 text-rose-500 flex items-center gap-2 hover:bg-rose-100'>
-                    <IconTrash size={18} strokeWidth={1.5}/>
+            )}
+
+            {type === 'delete' && (
+                <button
+                    type="button"
+                    onClick={() => handleDeleteData(url)}
+                    className={`${baseStyle} bg-red-100 text-red-700 hover:bg-red-200 ${className}`}
+                >
+                    <IconTrash size={16} strokeWidth={1.5} />
+                    <span className="hidden md:inline">Hapus</span>
                 </button>
-            }
+            )}
         </>
-    )
+    );
 }

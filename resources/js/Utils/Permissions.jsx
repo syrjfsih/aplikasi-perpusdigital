@@ -1,25 +1,10 @@
 import { usePage } from "@inertiajs/react";
 
-export default function hasAnyPermission(permissions){
+export default function hasAnyPermission(permissions) {
+    const { auth } = usePage().props;
 
-    // destruct auth from usepage props
-    const { auth } = usePage().props
+    const allPermissions = auth?.permissions ?? {};
 
-    // get all permissions from props auth
-    let allPermissions = auth.permissions;
-
-    // define has permission is false
-    let hasPermission = false;
-
-    // loop permissions
-    permissions.forEach(function(item){
-        // do it if permission is match with key
-        if(allPermissions[item])
-            // assign hasPermission to true
-            hasPermission = true;
-    });
-
- return hasPermission;
-
-   
+    // Kalau object, pakai 'in'
+    return permissions.some(permission => permission in allPermissions);
 }

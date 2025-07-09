@@ -1,19 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-export default function Input({label, type, className, errors, ...props}) {
+export default function Input({ label, type = 'text', className = '', errors, ...props }) {
     return (
-        <div className='flex flex-col gap-2'>
-            <label className='text-gray-600 text-sm'>
-                {label}
-            </label>
+        <div className="flex flex-col gap-1.5">
+            {label && (
+                <label className="text-sm font-medium text-gray-700">
+                    {label}
+                </label>
+            )}
             <input
                 type={type}
-                className={`w-full px-4 py-2 border text-sm rounded-md focus:outline-none focus:ring-0 bg-white text-gray-700 focus:border-gray-200 border-gray-200 ${className}`}
+                className={`w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-700 placeholder:text-gray-400 shadow-sm transition focus:border-teal-500 focus:ring-1 focus:ring-teal-500 focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed ${className}`}
                 {...props}
             />
             {errors && (
-                <small className='text-xs text-red-500'>{errors}</small>
+                <span className="text-xs text-red-500 mt-1">{errors}</span>
             )}
         </div>
-    )
+    );
 }

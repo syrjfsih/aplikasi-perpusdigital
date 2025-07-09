@@ -54,14 +54,16 @@ export default function AuthenticatedLayout({ header, children }) {
                                         Books
                                     </NavLink>
                                 }
-                                 {hasAnyPermission(['categories index']) &&
+
+                                {hasAnyPermission(['categories index']) &&
                                     <NavLink 
                                         href={route('categories.index')} 
                                         active={route().current('categories*')}
                                     >
-                                        Categories
+                                        Category
                                     </NavLink>
                                 }
+                                 
                                 
                             </div>
                         </div>

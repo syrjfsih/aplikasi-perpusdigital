@@ -9,15 +9,22 @@ export default function NavLink({
     return (
         <Link
             {...props}
-            className={
-                'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none ' +
-                (active
-                    ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 focus:border-gray-300 focus:text-gray-700') +
-                className
-            }
+            className={`
+                group relative inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-all duration-200 ease-in-out rounded-md
+                focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#a47148]
+                ${
+                    active
+                        ? 'bg-[#f3ede6] text-[#5c4438] shadow-sm ring-1 ring-[#d6ccc2]'
+                        : 'text-[#7b5e4a] hover:text-[#4b3832] hover:bg-[#f5f3ea]'
+                }
+                ${className}
+            `}
         >
-            {children}
+            <span>{children}</span>
+
+            {active && (
+                <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#a47148] rounded-full animate-[slideIn_0.3s_ease-in-out]" />
+            )}
         </Link>
     );
 }
