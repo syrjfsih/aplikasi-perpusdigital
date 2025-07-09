@@ -60,7 +60,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     </section>
 
                     <div className="mt-16 text-center text-sm text-[#7a6a5c]">
-                        &copy; 2025 Perpustakaan Digital — Laravel v{laravelVersion} (PHP v{phpVersion})
+                        &copy; 2025 Perpustakaan Digital by syrjfsih — Laravel v{laravelVersion} (PHP v{phpVersion})
                     </div>
                 </div>
             </div>
