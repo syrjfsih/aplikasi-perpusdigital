@@ -28,10 +28,10 @@ export default function Index({ auth }) {
                         <Button type={'add'} url={route('books.create')} />
                     )}
                     <div className="w-full md:w-4/6">
-                        <Search 
-                            url={route('books.index')} 
-                            placeholder={'Search books by title...'} 
-                            filter={filters} 
+                        <Search
+                            url={route('books.index')}
+                            placeholder={'Search books by title...'}
+                            filter={filters}
                         />
                     </div>
                 </div>
@@ -57,16 +57,16 @@ export default function Index({ auth }) {
                                     <Table.Td>{book.publisher}</Table.Td>
                                     <Table.Td>{book.year}</Table.Td>
                                     <Table.Td>
-                                    <div className="flex flex-wrap gap-1">
-        {book.categories.map((category) => (
-            <span
-                key={category.id}
-                className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded"
-            >
-                {category.name}
-            </span>
-        ))}
-    </div> 
+                                        <div className="flex flex-wrap gap-1">
+                                            {book.categories.map((category) => (
+                                                <span
+                                                    key={category.id}
+                                                    className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded"
+                                                >
+                                                    {category.name}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </Table.Td>
                                     <Table.Td>
                                         <div className="flex items-center gap-2">
@@ -76,7 +76,7 @@ export default function Index({ auth }) {
                                             {hasAnyPermission(['books delete']) && (
                                                 <Button type={'delete'} url={route('books.destroy', book.id)} />
                                             )}
-                                            
+
                                         </div>
                                     </Table.Td>
                                 </tr>
